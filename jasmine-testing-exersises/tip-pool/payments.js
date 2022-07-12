@@ -56,6 +56,29 @@ function appendPaymentTable(curPayment) {
   appendTd(newTr, '$' + curPayment.tipAmt);
   appendTd(newTr, curPayment.tipPercent + '%');
 
+      //adding a delete button for servers
+      function appendDeleteBtn(){
+        const removeBtn = document.createElement('button');
+        removeBtn.classList = 'delbtn';
+        removeBtn.innerHTML = 'X';
+        newTr.append(removeBtn)
+        removeBtn.addEventListener('click', function(e){
+          e.target.parentElement.remove();
+        })
+      }
+      const removeBtn = document.createElement('button');
+      removeBtn.classList = 'delbtn';
+      removeBtn.innerHTML = 'X';
+      newTr.append(removeBtn)
+      console.log(newTr)
+      removeBtn.addEventListener('click', function(e){
+        let truTar= e.target.parentElement.id;
+        console.log(truTar);
+        delete allPayments[truTar];
+        e.target.parentElement.remove();
+        updateSummary();
+      })
+
   paymentTbody.append(newTr);
 }
 

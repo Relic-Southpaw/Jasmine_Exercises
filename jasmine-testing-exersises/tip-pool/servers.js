@@ -28,6 +28,7 @@ function submitServerInfo(evt) {
 function updateServerTable() {
   serverTbody.innerHTML = '';
 
+
   for (let key in allServers) {
     let curServer = allServers[key];
 
@@ -35,10 +36,29 @@ function updateServerTable() {
     newTr.setAttribute('id', key);
 
     let tipAverage = sumPaymentTotal('tipAmt') / Object.keys(allServers).length;
-
     appendTd(newTr, curServer.serverName);
     appendTd(newTr, '$' + tipAverage.toFixed(2));
 
+    //adding a delete button for servers
+    function appendDeleteBtn() {
+      const removeBtn = document.createElement('button');
+      removeBtn.classList = 'delbtn';
+      removeBtn.innerHTML = 'X';
+      newTr.append(removeBtn)
+      removeBtn.addEventListener('click', function (e) {
+        e.target.parentElement.remove();
+      })
+    }
+    const removeBtn = document.createElement('button');
+    removeBtn.classList = 'delbtn';
+    removeBtn.innerHTML = 'X';
+    newTr.append(removeBtn)
+    removeBtn.addEventListener('click', function (e) {
+      e.target.parentElement.remove();
+      serverId--;
+    })
+
     serverTbody.append(newTr);
   }
+
 }
