@@ -1,6 +1,7 @@
 describe("helper's test (with setup and tear-down)", function() {
     beforeEach(function () {
       // initialization logic
+      allPayments ={};
       allPayments ={
         payment1:{
             billAmt: "98.76",
@@ -19,10 +20,12 @@ it('both payments should be added together', function(){
     expect(summaryTds[1].innerHTML).toEqual('$24.240000000000002');
     expect(summaryTds[2].innerHTML).toEqual('17%');
 })
-afterAll(function() {
+
+afterEach(function() {
     // teardown logic
     summaryTds[0].innerHTML = '';
     summaryTds[1].innerHTML = '';
     summaryTds[2].innerHTML = ''; 
+    allPayments={};
   });
 });
